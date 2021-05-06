@@ -31,7 +31,7 @@ class JournalEntry extends HTMLElement {
                 font-size: 20px;
                 margin-top: 3px;
                 margin-bottom: 20px;
-            }
+            } 
             .entry-image {
                 height: 100%;
                 max-height: 350px;
@@ -74,6 +74,15 @@ class JournalEntry extends HTMLElement {
     
     // CODE GOES HERE
 
+    let header = document.createTextNode(entry.title);
+    this.shadowRoot.querySelector(".entry-title").appendChild(header);
+
+    let date = document.createTextNode(entry.date);
+    this.shadowRoot.querySelector(".entry-date").appendChild(date);
+
+    let content = document.createTextNode(entry.content);
+    this.shadowRoot.querySelector(".entry-content").appendChild(content);
+    
     if (entry.image) {
       let entryImage;
       /*
@@ -85,10 +94,12 @@ class JournalEntry extends HTMLElement {
 
       // CODE GOES HERE vvv
 
-
-
-
-
+      entryImage = document.createElement('img');
+      entryImage.className = "entry-image"
+      entryImage.src = entry.image.src;
+      entryImage.alt = entry.image.alt;
+      this.shadowRoot.querySelector(".entry").appendChild(entryImage);
+      
       // CODE GOES HERE ^^^
 
       /* ------------- do not edit this code, it is for your debugging purposes ------------- */
@@ -111,10 +122,11 @@ class JournalEntry extends HTMLElement {
 
       // CODE GOES HERE vvv
 
-
-
-
-
+      entryAudio = document.createElement("audio");
+      entryAudio.src = entry.audio;
+      entryAudio.controls = true;
+      entryAudio.className = "entry-audio";
+      this.shadowRoot.querySelector(".entry").appendChild(entryAudio);
 
       // CODE GOES HERE ^^^
       
